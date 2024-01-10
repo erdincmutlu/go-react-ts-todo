@@ -48,3 +48,18 @@ Response:
     }
 ]
 ```
+
+### Get All Todos
+GET http://localhost:4000/api/todos
+
+Response:
+```
+[
+    {
+        "id": 1,
+        "title": "Testing",
+        "done": false,
+        "body": "Finish Tutorial"
+    }
+]
+```
