@@ -33,3 +33,18 @@ Response:
     }
 ]
 ```
+
+### Mark Todo Done
+PATCH http://localhost:4000/api/todos/:id/done
+
+Response:
+```
+[
+    {
+        "id": 1,
+        "title": "Testing",
+        "done": true,
+        "body": "Finish Tutorial"
+    }
+]
+```

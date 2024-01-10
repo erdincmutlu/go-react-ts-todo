@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -33,6 +34,22 @@ func main() {
 		todo.ID = len(todos) + 1
 
 		todos = append(todos, *todo)
+		return c.JSON(todos)
+	})
+
+	app.Patch("/api/todos/:id/done", func(c *fiber.Ctx) error {
+		id, err := c.ParamsInt("id")
+		if err != nil {
+			return c.Status(http.StatusBadRequest).SendString("Invalid id")
+		}
+
+		for i, t := range todos {
+			if t.ID == id {
+				todos[i].Done = true
+				break
+			}
+		}
+
 		return c.JSON(todos)
 	})
 
