@@ -4,8 +4,8 @@ import {Button, Modal, Group, TextInput, Textarea} from '@mantine/core';
 import { ENDPOINT, Todo } from '../App';
 import { KeyedMutator } from 'swr';
 
-function AddTodo({mutate}: { mutate: KeyedMutator<Todo[]>}){
-    const [open, setOpen] = useState(false)
+function AddTodo({mutate}: { mutate: KeyedMutator<Todo[]> }){
+    const [open, setOpen] = useState(false);
 
     const form = useForm({
         initialValues:{
@@ -14,9 +14,9 @@ function AddTodo({mutate}: { mutate: KeyedMutator<Todo[]>}){
         },
     });
 
-    async function createTodo(values: {title: string, body: string}) {
+    async function createTodo(values: {title: string; body: string}) {
       const updated = await fetch(`${ENDPOINT}/api/todos`, {
-        method: 'POST',
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -56,7 +56,7 @@ function AddTodo({mutate}: { mutate: KeyedMutator<Todo[]>}){
             </Button>
         </Group>
       </>
-    )
+    );
 }
 
-export default AddTodo
+export default AddTodo;

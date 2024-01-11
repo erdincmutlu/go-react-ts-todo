@@ -1,4 +1,4 @@
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, List } from '@mantine/core';
 import useSWR from 'swr';
 import './App.css';
 import AddTodo from './components/AddTodo';
@@ -18,8 +18,16 @@ const fetcher = (url: string) =>
 function App() {
   const {data, mutate} = useSWR<Todo[]>('api/todos', fetcher)
   return
-  <MantineProvider>{JSON.stringify(data)}
+  <MantineProvider>
+    <List spacing="xs" size="sm" mb={12} center>
+      {data?.map((todo) =>{
+      return <List.Item key={`todo_list__${todo.id}`}>
+        {todo.title}
 
+      </List.Item>
+      })}
+
+    </List>
     <AddTodo mutate={mutate} />
   </MantineProvider>;
 }
