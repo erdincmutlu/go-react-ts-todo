@@ -1,4 +1,5 @@
-import { MantineProvider, List } from '@mantine/core';
+import { MantineProvider, List, ThemeIcon } from '@mantine/core';
+import { CheckCircleFillIcon } from "@primer/octicons-react";
 import useSWR from 'swr';
 import './App.css';
 import AddTodo from './components/AddTodo';
@@ -18,13 +19,36 @@ const fetcher = (url: string) =>
 function App() {
   const {data, mutate} = useSWR<Todo[]>('api/todos', fetcher)
   return
-  <MantineProvider>
+  <MantineProvider
+    sx={(theme) => ({
+      padding: "2rem",
+      width: "100%",
+      maxWidth: "40rem",
+      margin: "0 auto",
+   })}
+  >
     <List spacing="xs" size="sm" mb={12} center>
       {data?.map((todo) =>{
-      return <List.Item key={`todo_list__${todo.id}`}>
+      return (
+      <List.Item key={`todo_list__${todo.id}`}
+
+      icon = {
+        todo.done ? (
+          <ThemeIcon color="teal" size={24} radius="xl">
+            <CheckCircleFillIcon size={20} />
+          </ThemeIcon>
+        ) : (
+          <ThemeIcon color="gray" size={24} radius="xl">
+            <CheckCircleFillIcon size={20} />
+          </ThemeIcon>
+        )
+      }
+
+      >
         {todo.title}
 
       </List.Item>
+      );
       })}
 
     </List>
