@@ -1,10 +1,16 @@
 # go-react-ts-todo
 ToDo application using Golang, React, TypeScript 
 
-To run
+To run server
 ```
 cd server
 go run main.go
+```
+
+To run client
+```
+cd client
+yarn dev
 ```
 
 ## Rest Endpoints
